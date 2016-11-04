@@ -1,0 +1,15 @@
+.sce-header-player {
+    padding-right: 0px;
+    width: 100%;
+}
+
+@media(min-width: 768px) {
+    .sce-header-player {
+        padding-right: 10px;
+        width: inherit;
+    }
+}
+
+.sce-author {
+    text-align: right;
+}
