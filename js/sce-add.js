@@ -6,6 +6,12 @@ $(document).ready(function() {
     $(window).scroll(function() {
         var currentScrollTop = $(this).scrollTop();
 
+        if (currentScrollTop > 50) {
+            $(".sce-fixed-btn").fadeIn("fast");
+        } else {
+            $(".sce-fixed-btn").fadeOut("fast");
+        }
+
         if (!navbar.is(":animated")) {
             if (currentScrollTop > lastScrollTop) {
                 if (parseInt(navbar.css("top")) >= 0) {

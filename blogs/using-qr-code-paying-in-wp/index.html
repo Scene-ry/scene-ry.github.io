@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/cosmo-custom.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/sce-add.css">
+    <link rel="shortcut icon" href="../../favicon.ico">
   </head>
 
   <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -20,12 +22,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">&gt;&nbsp;&nbsp;&lt;</a>
+          <a class="navbar-brand" href="../../index.html">O-O</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="http://bootswatch.com/cosmo/" target="_blank">Cosmo</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -40,8 +41,15 @@
             </li>
           </ul>
 
-          
-          <iframe class="navbar-right sce-header-player" frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="http://music.163.com/outchain/player?type=0&id=131222915&auto=0&height=32"></iframe>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">♪ Music <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <!-- 335342050-type4 131222915-type0  -->
+                <li><iframe class="sce-header-player" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="http://music.163.com/outchain/player?type=4&id=335342050&auto=0&height=430"></iframe></li>
+              </ul>
+            </li>
+          </ul>
 
         </div>
       </div>
@@ -116,7 +124,7 @@
           <div class="col-lg-12">
 
             <ul class="list-unstyled">
-              <li class="pull-right"><a href="#top">Back to top</a></li>
+              <li class="pull-right"><a id="go-top-mb" href="javascript:void(0)" style="display: none;">Back to top</a></li>
               <li><a href="https://twitter.com/JamesScenery">Twitter</a></li>
               <li><a href="https://github.com/Scene-ry">Scene-ry · GitHub</a></li>
             </ul>
@@ -130,10 +138,15 @@
 
       </footer>
 
+      <div class="sce-fixed-btn">
+        <a id="go-top-lg" title="Go to top" href="javascript:void(0)"><i class="fa fa-angle-up"></i></a>
+      </div>
+
     </div>
 
     <script type="text/javascript" src="../../js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/cosmo-custom.js"></script>
+    <script type="text/javascript" src="../../js/sce-add.js"></script>
   </body>
 </html>
