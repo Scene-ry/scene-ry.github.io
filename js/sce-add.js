@@ -2,14 +2,19 @@ $(document).ready(function() {
 
     var lastScrollTop = $(window).scrollTop();
     var navbar = $("#navbar");
+    var goTopBtn = $("#go-top-lg");
+
+    goTopBtn.hide();
 
     $(window).scroll(function() {
         var currentScrollTop = $(this).scrollTop();
 
-        if (currentScrollTop > 50) {
-            $(".sce-fixed-btn").fadeIn("fast");
-        } else {
-            $(".sce-fixed-btn").fadeOut("fast");
+        if (!goTopBtn.is(":animated")) {
+            if (currentScrollTop > 50) {
+                goTopBtn.fadeIn("fast");
+            } else {
+                goTopBtn.fadeOut("fast");
+            }
         }
 
         if (!navbar.is(":animated")) {
@@ -27,7 +32,7 @@ $(document).ready(function() {
         lastScrollTop = currentScrollTop;
     });
 
-    $("#go-top-lg").click(function() {
+    goTopBtn.click(function() {
         $("body,html").animate({ scrollTop: 0 }, 800);
         return false;
     });
