@@ -22,7 +22,7 @@ body {
     text-align: right;
 }
 
-.sce-fixed-btn {
+#sce-fixed-btn {
     position: fixed;
     right: 1%;
     bottom: 2%;
@@ -32,14 +32,14 @@ body {
     text-align: center;
 }
 
-.sce-fixed-btn a {
+#sce-fixed-btn a {
     display: inline-block;
     width: 40px;
     height: 40px;
     color: #eeeeee;
 }
 
-.sce-fixed-btn a i {
+#sce-fixed-btn a i {
     vertical-align: middle;
 }
 

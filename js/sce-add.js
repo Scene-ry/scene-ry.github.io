@@ -2,38 +2,45 @@ $(document).ready(function() {
 
     var lastScrollTop = $(window).scrollTop();
     var navbar = $("#navbar");
-    var goTopBtn = $("#go-top-lg");
+    navbar.load("/templates/navbar.html");
 
-    goTopBtn.hide();
+    $("#sce-footer").load("/templates/footer.html");
 
-    $(window).scroll(function() {
-        var currentScrollTop = $(this).scrollTop();
+    $("#sce-fixed-btn").load("/templates/fixed-buttons.html", function() {
+        var goTopBtn = $("#go-top-lg");
 
-        if (!goTopBtn.is(":animated")) {
-            if (currentScrollTop > 50) {
-                goTopBtn.fadeIn("fast");
-            } else {
-                goTopBtn.fadeOut("fast");
-            }
-        }
+        goTopBtn.hide();
 
-        if (!navbar.is(":animated")) {
-            if (currentScrollTop > lastScrollTop) {
-                if (parseInt(navbar.css("top")) >= 0) {
-                    $("#navbar").animate({ top: "-60px" }, "fast");
-                }
-            } else {
-                if (parseInt(navbar.css("top")) < 0) {
-                    $("#navbar").animate({ top: "0px" }, "fast");
+        $(window).scroll(function() {
+            var currentScrollTop = $(this).scrollTop();
+
+            if (!goTopBtn.is(":animated")) {
+                if (currentScrollTop > 50) {
+                    goTopBtn.fadeIn("fast");
+                } else {
+                    goTopBtn.fadeOut("fast");
                 }
             }
-        }
 
-        lastScrollTop = currentScrollTop;
-    });
+            if (!navbar.is(":animated")) {
+                if (currentScrollTop > lastScrollTop) {
+                    if (parseInt(navbar.css("top")) >= 0) {
+                        $("#navbar").animate({ top: "-60px" }, "fast");
+                    }
+                } else {
+                    if (parseInt(navbar.css("top")) < 0) {
+                        $("#navbar").animate({ top: "0px" }, "fast");
+                    }
+                }
+            }
 
-    goTopBtn.click(function() {
-        $("body,html").animate({ scrollTop: 0 }, 800);
-        return false;
+            lastScrollTop = currentScrollTop;
+        });
+
+        goTopBtn.click(function() {
+            $("body,html").animate({ scrollTop: 0 }, 800);
+            return false;
+        });
     });
+    
 });

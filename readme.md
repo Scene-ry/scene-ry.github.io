@@ -1,1 +1,3 @@
 网站祈祷中....
+
+server.js和filetypes.js仅用于本地node.js调试
