@@ -44,7 +44,48 @@
           <p>{图}</p>
           <p>不带这么玩的啊喂！项目一开始就面临夭折？</p>
           <p>然后不甘心Google了一下，发现可以通过logcat查看异常信息</p>
-          <p>{图}</p>
+          <pre>
+E/AndroidRuntime( 1175): FATAL EXCEPTION: main
+E/AndroidRuntime( 1175): java.lang.ExceptionInInitializerError
+E/AndroidRuntime( 1175):        at cn.jpush.android.service.ServiceInterface.a(U
+nknown Source)
+E/AndroidRuntime( 1175):        at cn.jpush.android.api.JPushInterface.init(Unkn
+own Source)
+E/AndroidRuntime( 1175):        at cn.flyrise.MyApplication.b(Unknown Source)
+E/AndroidRuntime( 1175):        at cn.flyrise.MyApplication.onCreate(Unknown Sou
+rce)
+E/AndroidRuntime( 1175):        at android.app.Instrumentation.callApplicationOn
+Create(Instrumentation.java:999)
+E/AndroidRuntime( 1175):        at android.app.ActivityThread.handleBindApplicat
+ion(ActivityThread.java:4151)
+E/AndroidRuntime( 1175):        at android.app.ActivityThread.access$1300(Activi
+tyThread.java:130)
+E/AndroidRuntime( 1175):        at android.app.ActivityThread$H.handleMessage(Ac
+tivityThread.java:1255)
+E/AndroidRuntime( 1175):        at android.os.Handler.dispatchMessage(Handler.ja
+va:99)
+E/AndroidRuntime( 1175):        at android.os.Looper.loop(Looper.java:137)
+E/AndroidRuntime( 1175):        at android.app.ActivityThread.main(ActivityThrea
+d.java:4745)
+E/AndroidRuntime( 1175):        at java.lang.reflect.Method.invokeNative(Native
+Method)
+E/AndroidRuntime( 1175):        at java.lang.reflect.Method.invoke(Method.java:5
+11)
+E/AndroidRuntime( 1175):        at com.android.internal.os.ZygoteInit$MethodAndA
+rgsCaller.run(ZygoteInit.java:786)
+E/AndroidRuntime( 1175):        at com.android.internal.os.ZygoteInit.main(Zygot
+eInit.java:553)
+E/AndroidRuntime( 1175):        at dalvik.system.NativeStart.main(Native Method)
+
+E/AndroidRuntime( 1175): Caused by: java.lang.UnsatisfiedLinkError: Couldn't loa
+d jpush180: findLibrary returned null
+E/AndroidRuntime( 1175):        at java.lang.Runtime.loadLibrary(Runtime.java:36
+5)
+E/AndroidRuntime( 1175):        at java.lang.System.loadLibrary(System.java:535)
+
+E/AndroidRuntime( 1175):        at cn.jpush.android.service.PushProtocol.<clinit
+>(Unknown Source)
+E/AndroidRuntime( 1175):        ... 16 more</pre>
           <p>发现闪退是由于缺了一个叫jpush180的库文件（注：极光推送的运行库）</p>
 
           <!--
