@@ -1,9 +1,9 @@
-:not(i) {
-    font-family:  "Source Sans Pro", Calibri, Candara, 'Microsoft Yahei', Arial, sans-serif !important;
-}
-
 body {
     background-color: aliceblue;
+}
+
+body, h1, h2, h3, h4, h5 {
+    font-family: "Source Sans Pro", Calibri, Candara, 'Microsoft Yahei', Arial, sans-serif;
 }
 
 .sce-header-player {
@@ -16,6 +16,17 @@ body {
         padding-right: 10px;
         width: inherit;
     }
+
+/*    .modal-dialog {
+        width: 95%;
+        margin: 30px auto;
+        height: 90%;
+    }
+
+    .modal-content {
+        height: auto;
+        min-height: 100%;
+    }*/
 }
 
 .sce-author {
@@ -46,3 +57,15 @@ body {
 .sce-btn-with-border {
     border-bottom: 1px solid #eeeeee;
 }
+
+/* modals */
+
+/*.modal .modal-content .row {
+    margin-bottom: 10px;
+}
+
+.modal .modal-content .row:last-child {
+    margin-bottom: 0;
+}
+*/
+/* end modals */

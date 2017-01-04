@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-lg-12 page-header">
+    <h2><strong>Scene_ry's Mogic House</strong></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <blockquote>
+      <p>There is an old saying in China called <i>Keeping Silent Can Make Great Money</i>.</p>
+      <small>The Elder said in <cite title="Source Title">Dialogue with Journalists</cite></small>
+    </blockquote>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+
+  <div class="col-md-8">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Latest articles</h3>
+      </div>
+      <div class="panel-body">
+        <div ng-repeat="article in latestArticleList">
+          <h4>{{article.title}}</h4>
+          <p class="sce-article-content">
+            {{article.outline + '...'}}
+            <a ng-href="{{article.seeMoreBtnLink}}">See more</a>
+          </p>
+
+          <span ng-if="$index < latestArticleList.length - 1"><br><hr></span>
+        </div>
+          
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Excited quotes</h3>
+      </div>
+      <div class="panel-body">
+        <div ng-repeat="comment in commentList">
+          <p ng-bind-html="trustHtml(comment.content)"></p>
+          <p class="sce-author"><i>{{'----' + comment.author}}</i></p>
+
+          <hr ng-if="$index < commentList.length - 1">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
