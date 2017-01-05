@@ -1,9 +1,17 @@
-body {
-    background-color: aliceblue;
+a, a:active, a:hover, a:focus, a:visited {
+    text-decoration: none;
 }
 
-body, h1, h2, h3, h4, h5 {
+body {
+    background-color: #f9fff9;
+}
+
+body, h1, h2, h3, h4, h5, #main-content pre.article-info {
     font-family: "Source Sans Pro", Calibri, Candara, 'Microsoft Yahei', Arial, sans-serif;
+}
+
+.nowrap {
+    white-space: nowrap ;
 }
 
 .sce-header-player {
@@ -32,6 +40,18 @@ body, h1, h2, h3, h4, h5 {
 .sce-author {
     text-align: right;
 }
+
+/* Main content */
+
+#main-content {
+    margin-top: 50px;
+}
+
+#main-content .btn-group .btn:focus {
+    background-color: initial;
+}
+
+/* End Main content */
 
 #sce-fixed-btn {
     position: fixed;
@@ -69,3 +89,11 @@ body, h1, h2, h3, h4, h5 {
 }
 */
 /* end modals */
+
+footer {
+    margin: 50px 0;
+}
+
+footer p {
+    margin: 0;
+}

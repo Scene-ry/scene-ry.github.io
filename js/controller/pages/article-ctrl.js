@@ -1,17 +1,26 @@
-app.controller('ArticleCtrl', function($scope, $http, $routeParams) {
+app.controller('ArticleCtrl', function($scope, $http, $routeParams, $timeout) {
+
+  $scope.comment = '';
+
+  $scope.sendComment = function() {
+    console.log($scope.comment);
+  };
   
   $http({
     url: 'data/article/' + $routeParams.articleId + '.json',
     method: 'GET'
   }).success(function(response) {
-    $scope.title = response.title;
-    $scope.info = response.info;
-    $scope.content = response.content;
+    $scope.currentArticle = response;
+    $scope.currentArticle.exist = true;
   }).error(function() {
-    $scope.title = 'Article not found';
-    $scope.info = '<p>No information</p>';
-    $scope.content = '<p>The article with this id does not exist.</p>'
+    $scope.currentArticle = {
+      title: 'Article not found',
+      info: 'No information',
+      content: '<p>The article with this id does not exist.</p>',
+      exist: false
+    };
   }).finally(function() {
-    document.title = $scope.title + ' - Excited!';
+    document.title = $scope.currentArticle.title + ' - Excited!';
   });
+
 });

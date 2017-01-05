@@ -1,19 +1,47 @@
 <div class="row">
   <div class="col-lg-12 page-header">
-    <h2><strong>{{title}}</strong></h2>
+    <h2 style="margin-bottom: 20px;"><strong>{{currentArticle.title}}</strong></h2>
+    <ul ng-if="currentArticle.exist" style="padding-left: 0; list-style: none;">
+      <li class="nowrap" style="margin-right: 30px; display: inline-block;">
+        分类：
+        <span ng-if="currentArticle.type == 0">Technical blog</span>
+        <span ng-if="currentArticle.type == 1">Games</span>
+        <span ng-if="currentArticle.type == 2">Big news</span>
+        <span ng-if="currentArticle.type == 3">Informal essay</span>
+      </li>
+      <li class="nowrap" style="margin-right: 30px; display: inline-block;">{{'来源：' + currentArticle.source}}</li>
+      <li class="nowrap" style="margin-right: 30px; display: inline-block;">{{'创建者：' + currentArticle.creator}}</li>
+      <li class="nowrap" style="display: inline-block;">{{'修改时间：' + currentArticle.modifyTime}}</li>
+    </ul>
   </div>
 </div>
 
 <div class="row">
 
-  <div class="col-md-8" ng-bind-html="trustHtml(content)"></div>
+  <div class="col-md-8" style="margin-bottom: 50px;">
+    <div ng-bind-html="trustHtml(currentArticle.content)" style="margin-bottom: 50px;"></div>
 
-  <div class="col-md-4">
+    <div ng-if="currentArticle.exist" ng-model="comment" contenteditable="true" placeholder="输入评论..." style="height: 200px;"></div>
+    <div ng-if="currentArticle.exist" style="margin-top: 10px;">
+      <button class="btn btn-primary pull-right" ng-click="sendComment()">Send</button>
+    </div>
+  </div>
+
+  <div ng-if="currentArticle.exist" class="col-md-4">
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Info</h3>
       </div>
-      <div class="panel-body" ng-bind-html="trustHtml(info)"></div>
+      <div class="panel-body">
+        <pre class="article-info" style="color: #000; background-color: transparent; padding: 0; border: none; line-height: 20px; font-size: 14px;">{{currentArticle.info}}</pre>
+      </div>
+    </div>
+
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Comments</h3>
+      </div>
+      <div class="panel-body">无可奉告</div>
     </div>
   </div>
 

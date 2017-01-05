@@ -54,13 +54,15 @@ app.config(function($routeProvider){
       // Write data to the model
       function readViewText() {
         var html = element.html();
-          // When we clear the content editable the browser leaves a <br> behind
-          // If strip-br attribute is provided then we strip this out
-          if (attrs.stripBr && html === '<br>') {
-            html = '';
-          }
-          ngModel.$setViewValue(html);
+        // When we clear the content editable the browser leaves a <br> behind
+        // If strip-br attribute is provided then we strip this out
+        if (attrs.stripBr && html === '<br>') {
+          html = '';
         }
+        ngModel.$setViewValue(html);
+      }
+
+      //wangEditor.config.printLog = false;
 
       // 创建编辑器
       var editor = new wangEditor(element);

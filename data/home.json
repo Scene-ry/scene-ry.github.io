@@ -1,13 +1,13 @@
 {
   "latest": [
     {
-      "title": "曲线救国——如何让WP/Win10M用上扫码付款功能",
-      "outline": "先列原理，免得一不小心就标题党：电脑上挂着安卓模拟器，打开相应应用的二维码付款界面，定时截图，并将图复制到剪贴板，再利用脚本打开QQ好友界面，粘贴图片并发送信息。相当简单粗暴的一个方法，风险当然也是有的，就是如果别有用心的人想要抓个包，你分分钟就丢了一大笔钱了（不知道支付宝和微信支付有没有限额的措施）",
-      "seeMoreBtnLink": "#/article/using-qr-code-paying-in-wp"
+      "title": "史上最高级别“红色预警”．重度雾霾袭华北",
+      "outline": "中国央视气象台周二首次发布史上最高级别的“雾霾红色预警”，部份严重地区能见度甚至不足50公尺，华北地区俨然成了名副其实的十面“霾”伏。",
+      "seeMoreBtnLink": "#/article/heavy-smog-striking-cities-in-china"
     },
     {
-      "title": "Gettysburg Address",
-      "outline": "Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal. ",
+      "title": "曲线救国——如何让WP/Win10M用上扫码付款功能",
+      "outline": "先列原理，免得一不小心就标题党：电脑上挂着安卓模拟器，打开相应应用的二维码付款界面，定时截图，并将图复制到剪贴板，再利用脚本打开QQ好友界面，粘贴图片并发送信息。相当简单粗暴的一个方法，风险当然也是有的，就是如果别有用心的人想要抓个包，你分分钟就丢了一大笔钱了（不知道支付宝和微信支付有没有限额的措施）",
       "seeMoreBtnLink": "#/article/using-qr-code-paying-in-wp"
     }
   ],
