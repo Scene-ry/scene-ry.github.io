@@ -18,6 +18,6 @@ app.controller('EditArticleCtrl', function($scope, $timeout) {
   };
 
   //console.log('EditArticleCtrl ready');
-  $timeout(function() { $('#article-title')[0].focus(); }, 10);
+  $timeout(function() { $('#article-title-edit')[0].focus(); }, 10);
   
 });

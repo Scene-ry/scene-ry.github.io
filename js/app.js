@@ -94,7 +94,8 @@ app.config(function($routeProvider){
         'insertcode',
         '|',
         'undo',
-        'redo'
+        'redo',
+        //'fullscreen'
       ];
       editor.create();
     }

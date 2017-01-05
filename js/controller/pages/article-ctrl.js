@@ -1,9 +1,7 @@
 app.controller('ArticleCtrl', function($scope, $http, $routeParams, $timeout) {
 
-  $scope.comment = '';
-
   $scope.sendComment = function() {
-    console.log($scope.comment);
+    console.log($scope.currentArticle.comment);
   };
   
   $http({
@@ -12,6 +10,7 @@ app.controller('ArticleCtrl', function($scope, $http, $routeParams, $timeout) {
   }).success(function(response) {
     $scope.currentArticle = response;
     $scope.currentArticle.exist = true;
+    $scope.currentArticle.commentToSend = '<p><br></p>';
   }).error(function() {
     $scope.currentArticle = {
       title: 'Article not found',
@@ -22,5 +21,9 @@ app.controller('ArticleCtrl', function($scope, $http, $routeParams, $timeout) {
   }).finally(function() {
     document.title = $scope.currentArticle.title + ' - Excited!';
   });
+
+  $timeout(function() {
+    $('#input-focus')[0].focus();
+  }, 10);
 
 });
