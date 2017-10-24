@@ -22,7 +22,7 @@ var MUSE_CARDS = [
     '【秘密の手料理】 西木野真姫 スマイル UR',
     '【ことりのため1こも】 西木野真姫 スマイル UR',
     '【ライブの準備】 西木野真姫 スマイル UR',
-    '【【真夏の果実女】 】 東條希 スマイル UR',
+    '【真夏の果実女】 東條希 スマイル UR',
     '【気合し人れようナ】 東條希 スマイル UR',
     '【ずっとこのまま......。】 東條希 スマイル UR',
     '【花陽の吾コーデナ】 小泉花陽 スマイル UR',
@@ -96,22 +96,78 @@ var MUSE_CARDS = [
     '【天に感謝，。】 矢澤にこ クール UR',
     '【小恵魔猛特訓!】 矢澤にこ クール UR'
 ];
+
+var AQOURS_CARDS = [
+    '【お下がり卒業】 高海干歌 スマイル UR',
+    '【おLでませ海の家!】 高海千歌 スマイル UR',
+    '【私の声、聞こえますか】 桜内梨子 スマイル UR',
+    '【綺麗なお姉さん】 松浦果南 スマイル UR',
+    '【巫女舞ステツブ】 黒澤ダイヤ スマイル UR',
+    '【新し心発見】 渡辺曜 スマイル UR',
+    '【罪のくちづけ】 津昌善子 スマイル UR',
+    '【失礼のないように】 国木田花丸 スマイル UR',
+    '【迷い火】 国木田花丸 スマイル UR',
+    '【バーニングシヤイニー】 小原鞠莉 スマイル UR',
+    '【神樣、お願いナ】 黒澤ルビイ スマイル UR',
+    '【どこだっていいよ予】 高海千歌 ビユア UR',
+    '【happylife】 桜内梨子 ピユア UR',
+    '【そぱにユるよ】 松浦果南 ビユア UR',
+    '【キ中ンデイシヤワー】 松浦果南 ビユア UR',
+    '【ハートキヤツチ予】 黒澤ダイヤ ビユア UR',
+    '【たのもー!】 渡辺曜 ビユア UR',
+    '【うさぎを追って】 渡辺曜 ビユア UR',
+    '【たゆたうクラゲ】 津島善子 ビユア UR',
+    '【ブーケに想しを込めて】 国木田花丸 ピユア UR',
+    '【あなただけに】 小原鞠莉 ビユア UR',
+    '【負けなLI】 黒潭ルビイ ビユア UR',
+    '【頑張る姿、見てるよ夕】 商海干歌 クール UR',
+    '【上手〈言えなLの】 桜内梨子 クール UR',
+    '【Hello,WONDER!】 楼内梨子 クール UR',
+    '【わんわん巡回】 松浦果南 クール UR',
+    '【はろういんぱーてい】 黒澤ダイヤ クール UR',
+    '【楽しLを発信しよう，·】 渡辺曜 クール UR',
+    '【下界の模式】 I睾島善子 クール UR',
+    '【i者の堕天使】 津島善子 クール UR',
+    '【ヒツジさん集め】 国木田花丸 クール UR',
+    '【ラツキーアイテム】 小原鞠莉 クール UR',
+    '【ルビイのひとりだち】 黒澤ルビイ クール UR'
+];
+
 var MUSE_SR_COUNT = 414;
-// var AQOURS_CARDS = [];
+var AQOURS_SR_COUNT = 116;
 
 window.onload = function() {
+    var groupSel = document.getElementById('group');
     var drawBtn = document.getElementById('draw');
     var clearBoxBtn = document.getElementById('clearbox');
     var drawResultBox = document.getElementById('draw_result');
 
+    groupSel.onchange = function() {
+        drawResultBox.innerHTML = '';
+    };
+
     drawBtn.onclick = function() {
-        var totalCardCount = MUSE_CARDS.length + MUSE_SR_COUNT;
-        var rd = Math.floor(Math.random() * totalCardCount);
-        if (rd < MUSE_CARDS.length) {
-            drawResultBox.innerHTML += '<p>' + MUSE_CARDS[rd] + '</p>'
-        } else {
-            drawResultBox.innerHTML += '<p>SR</p>';
+        switch (groupSel.value) {
+            case "muse":
+                var totalCardCount = MUSE_CARDS.length + MUSE_SR_COUNT;
+                var rd = Math.floor(Math.random() * totalCardCount);
+                if (rd < MUSE_CARDS.length) {
+                    drawResultBox.innerHTML += '<p>' + MUSE_CARDS[rd] + '</p>'
+                } else {
+                    drawResultBox.innerHTML += '<p>SR</p>';
+                }
+                break;
+            case "aqours":
+                var totalCardCount = AQOURS_CARDS.length + AQOURS_SR_COUNT;
+                var rd = Math.floor(Math.random() * totalCardCount);
+                if (rd < AQOURS_CARDS.length) {
+                    drawResultBox.innerHTML += '<p>' + AQOURS_CARDS[rd] + '</p>'
+                } else {
+                    drawResultBox.innerHTML += '<p>SR</p>';
+                }
+                break;
         }
+        
     };
 
     clearBoxBtn.onclick = function() {
