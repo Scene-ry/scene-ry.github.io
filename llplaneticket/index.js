@@ -73,7 +73,7 @@ var MUSE_CARDS = [
     '【夕涼みガール】 南ことり クール UR',
     '【捕まえち中いますナ】 南ことlj クール UR',
     '【みんなでって嬉しLな】 南ことり クール UR',
-    '下ラフアローシユート!】 園田海未 クール UR',
+    '【下ラフアローシユート!】 園田海未 クール UR',
     '【甘味のちから】 園田海米 クール UR',
     '【海ヘのt童れ】 園田海未 クール UR',
     '【春の和菜子】 園田海米 クール UR',
@@ -133,12 +133,13 @@ var AQOURS_CARDS = [
     '【ルビイのひとりだち】 黒澤ルビイ クール UR'
 ];
 
-var MUSE_SR_COUNT = 414;
-var AQOURS_SR_COUNT = 116;
+// var MUSE_SR_COUNT = 414;
+// var AQOURS_SR_COUNT = 116;
 
 window.onload = function() {
     var groupSel = document.getElementById('group');
-    var drawBtn = document.getElementById('draw');
+    var draw5Btn = document.getElementById('draw5');
+    var draw25Btn = document.getElementById('draw25');
     var clearBoxBtn = document.getElementById('clearbox');
     var drawResultBox = document.getElementById('draw_result');
 
@@ -146,10 +147,10 @@ window.onload = function() {
         drawResultBox.innerHTML = '';
     };
 
-    drawBtn.onclick = function() {
+    draw5Btn.onclick = function() {
         switch (groupSel.value) {
             case "muse":
-                var totalCardCount = MUSE_CARDS.length + MUSE_SR_COUNT;
+                var totalCardCount = MUSE_CARDS.length * 5;
                 var rd = Math.floor(Math.random() * totalCardCount);
                 if (rd < MUSE_CARDS.length) {
                     drawResultBox.innerHTML += '<p>' + MUSE_CARDS[rd] + '</p>'
@@ -158,7 +159,7 @@ window.onload = function() {
                 }
                 break;
             case "aqours":
-                var totalCardCount = AQOURS_CARDS.length + AQOURS_SR_COUNT;
+                var totalCardCount = AQOURS_CARDS.length * 5;
                 var rd = Math.floor(Math.random() * totalCardCount);
                 if (rd < AQOURS_CARDS.length) {
                     drawResultBox.innerHTML += '<p>' + AQOURS_CARDS[rd] + '</p>'
@@ -167,7 +168,21 @@ window.onload = function() {
                 }
                 break;
         }
-        
+    };
+
+    draw25Btn.onclick = function() {
+        switch (groupSel.value) {
+            case "muse":
+                var totalCardCount = MUSE_CARDS.length;
+                var rd = Math.floor(Math.random() * totalCardCount);
+                drawResultBox.innerHTML += '<p>' + MUSE_CARDS[rd] + '</p>'
+                break;
+            case "aqours":
+                var totalCardCount = AQOURS_CARDS.length;
+                var rd = Math.floor(Math.random() * totalCardCount);
+                drawResultBox.innerHTML += '<p>' + AQOURS_CARDS[rd] + '</p>'
+                break;
+        }
     };
 
     clearBoxBtn.onclick = function() {
