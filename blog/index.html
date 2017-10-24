@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="sceBlog" ng-controller="CommonCtrl">
+  <head>
+    <meta charset="utf-8">
+    <title>Ex-cited!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Core css -->
+    <link rel="stylesheet" type="text/css" href="resources/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/cosmo-custom.min.css"> -->
+
+    <!-- wangEditor -->
+    <link rel="stylesheet" type="text/css" href="resources/wangEditor/dist/css/wangEditor.min.css">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/common-page.css">
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+
+  <body elem-ready="pageReady()">
+    <nav id="navbar" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/">θ..θ</a></div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catagories
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="javascript:void(0)">Technical blogs</a></li>
+                <!--li class="divider"></li-->
+                <li><a href="javascript:void(0)">Games</a></li>
+                <li><a href="javascript:void(0)">Big news</a></li>
+                <li><a href="javascript:void(0)">Informal essay</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li><a href="#/add-article" title="Write an article"><span class="fa fa-plus"></span></a></li> -->
+            <li class="dropdown">
+              <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <span>
+                  <i class="fa fa-music"></i>
+                </span>&nbsp;Music
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <!-- 335342050-type4 131222915-type0 -->
+                <li>
+                  <iframe class="sce-header-player" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="http://music.163.com/outchain/player?type=4&id=335342050&auto=0&height=430"></iframe>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div id="main-content" class="animated fadeInUp" ng-view></div>
+
+      <footer id="sce-footer">
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="list-unstyled">
+            <!-- <li class="pull-right"><a id="go-top-mb" href="javascript:void(0)" style="display: none;">Back to top</a></li> -->
+              <li style="display: inline-block; margin-right: 10px;"><a href="https://twitter.com/JamesScenery" target="_blank">Twitter</a></li>
+              <li style="display: inline-block;"><a href="https://github.com/Scene-ry" target="_blank">Scene-ry · GitHub</a></li>
+            </ul>
+            <p>View source code in
+              <a href="https://github.com/Scene-ry/scene-ry.github.io" target="_blank">GitHub - Scene-ry/scene-ry.github.io</a>
+            </p>
+            <!-- <p>Template from
+              <a href="http://bootswatch.com/cosmo/" target="_blank">Bootswatch: Cosmo</a>
+            </p> -->
+            <p>WYSIWYG from <a href="http://www.wangeditor.com/" target="_blank">wangEditor</a></p>
+            <p>Based on
+              <a href="http://getbootstrap.com" rel="nofollow" target="_blank">Bootstrap</a>. Icons from
+              <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow" target="_blank">Font Awesome</a>. Web fonts from
+              <a href="http://www.google.com/webfonts" rel="nofollow" target="_blank">Google</a>.
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      <div id="sce-fixed-btn">
+        <a id="go-top-lg" class="sce-btn-with-border" title="Go to top" href="javascript:void(0)">
+          <i class="fa fa-angle-up"></i>
+        </a>
+        <a class="sce-btn-with-border" title="Add article" href="#/add-article">
+          <i class="fa fa-plus"></i>
+        </a>
+        <a title="Add article" href="#/add-article">
+          <i class="fa fa-envelope"></i>
+        </a>
+        <!-- <a class="sce-btn-with-border" title="My Twitter" href="https://twitter.com/JamesScenery" target="_blank">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a title="My GitHub" href="https://github.com/Scene-ry" target="_blank">
+          <i class="fa fa-github"></i>
+        </a> -->
+      </div>
+
+    </div>
+
+    <!-- Core js -->
+    <script type="text/javascript" src="resources/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="resources/jquery/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="resources/attrchange/attrchange.js"></script>
+    <script type="text/javascript" src="resources/attrchange/attrchange_ext.js"></script>
+    <script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="resources/bootstrap/js/cosmo-custom.js"></script> -->
+    <script type="text/javascript" src="resources/wangEditor/dist/js/wangEditor.js"></script>
+    <script type="text/javascript" src="resources/wangEditor/dist/js/plugin.js"></script>
+
+    <!-- Angular config -->
+    <script type="text/javascript" src="resources/angular/angular.min.js"></script>
+    <script type="text/javascript" src="resources/angular/angular-route.min.js"></script>
+
+    <!-- Angular controllers -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controller/common-ctrl.js"></script>
+    <script type="text/javascript" src="js/controller/pages/home-ctrl.js"></script>
+    <script type="text/javascript" src="js/controller/pages/article-ctrl.js"></script>
+    <script type="text/javascript" src="js/controller/pages/edit-article-ctrl.js"></script>
+
+    <!-- Custom js -->
+  </body>
+</html>
