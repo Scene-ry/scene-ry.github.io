@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/encoding.min.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+    <script src="js/mde.js"></script>
+</head>
+<body style="min-width: 925px;">
+    <h2>IIDX music_data.bin Modifier</h2>
+    <h4>Supported Versions:</h4>
+    <ul>
+        <li>Heroic Verse</li>
+        <li>BISTROVER</li>
+    </ul>
+    <div>
+        <input type="file" id="filepicker">
+        <button id="savebtn">Save music_data.bin</button>
+    </div>
+    <div id="panel">
+        <div style="display: inline-block;">
+            <select name="songlist" id="songlist" size="31"></select>
+            <br/>
+            <button id="newentry">Create New Entry</button>
+            <button id="deleteentry">Delete Entry</button>
+        </div>
+        <div style="display: inline-block; width: 500px;">
+            <input type="hidden" id="editingsongid">
+            <label for="title">Title:</label><input id="title"><br />
+            <label for="asciititle">ASCII Title:</label><input id="asciititle"><br />
+            <label for="genre">Genre:</label><input id="genre"><br />
+            <label for="artist">Artist:</label><input id="artist"><br />
+            <label for="entryid">Entry ID:</label><input id="entryid" disabled><br />
+            <label for="version">Version:</label><input id="version" type="number"><br />
+            <label for="afpflag">Afp Flag:</label><input id="afpflag" disabled><br />
+            <label for="volume">Volume:</label><input id="volume" type="number"><br />
+
+            <p>Difficulty</p>
+            <label for="spb">SPB:</label><input id="spb" style="width: 30px;" type="number">
+            <label for="spn">SPN:</label><input id="spn" style="width: 30px;" type="number">
+            <label for="sph">SPH:</label><input id="sph" style="width: 30px;" type="number">
+            <label for="spa">SPA:</label><input id="spa" style="width: 30px;" type="number">
+            <label for="spl">SPL:</label><input id="spl" style="width: 30px;" type="number"><br />
+            <label for="dpb">DPB:</label><input id="dpb" style="width: 30px;" type="number">
+            <label for="dpn">DPN:</label><input id="dpn" style="width: 30px;" type="number">
+            <label for="dph">DPH:</label><input id="dph" style="width: 30px;" type="number">
+            <label for="dpa">DPA:</label><input id="dpa" style="width: 30px;" type="number">
+            <label for="dpl">DPL:</label><input id="dpl" style="width: 30px;" type="number">
+            <br />
+
+            <p>File Identifiers</p>
+            <label for="ispb">SPB:</label><input id="ispb" size="1">
+            <label for="ispn">SPN:</label><input id="ispn" size="1">
+            <label for="isph">SPH:</label><input id="isph" size="1">
+            <label for="ispa">SPA:</label><input id="ispa" size="1">
+            <label for="ispl">SPL:</label><input id="ispl" size="1">
+            <br />
+
+            <label for="idpb">DPB:</label><input id="idpb" size="1">
+            <label for="idpn">DPN:</label><input id="idpn" size="1">
+            <label for="idph">DPH:</label><input id="idph" size="1">
+            <label for="idpa">DPA:</label><input id="idpa" size="1">
+            <label for="idpl">DPL:</label><input id="idpl" size="1">
+            <br />
+
+            <p>Entry Texture Flags</p>
+            <label for="textitle">Title:</label><input id="textitle" type="checkbox">
+            <label for="texartist">Artist:</label><input id="texartist" type="checkbox">
+            <label for="texgenre">Genre:</label><input id="texgenre" type="checkbox">
+            <label for="texload">Load:</label><input id="texload" type="checkbox">
+            <label for="texlist">List:</label><input id="texlist" type="checkbox">
+            <br />
+
+            <label for="bgafilename">BGA Filename:</label><input id="bgafilename"><br />
+            <label for="bgadelay">BGA Delay:</label><input id="bgadelay" type="number"><br />
+
+            <p>Entry Flags</p>
+            <label for="otherfolder">Other Folder:</label><input id="otherfolder" type="checkbox">
+            <label for="bemanifolder">Bemani Folder:</label><input id="bemanifolder" type="checkbox">
+            <label for="splittablediff">Splittable Diff.:</label><input id="splittablediff" type="checkbox">
+            <br />
+
+            <label for="entryfont">Entry Font:</label>
+            <select id="entryfont">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <br />
+
+            <button id="updatebtn">Update</button>
+        </div>
+    </div>
+</body>
+</html>
