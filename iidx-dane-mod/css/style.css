@@ -1,3 +1,12 @@
 table {
     border: 1px solid #000;
 }
+
+#songfinderresult thead tr td {
+    font-weight: bold;
+}
+
+#songfinderresult tr td {
+    padding: 5px 0;
+    border-bottom: 1px solid #000;
+}

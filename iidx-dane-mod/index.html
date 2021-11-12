@@ -19,9 +19,21 @@
         <li>BISTROVER</li>
     </ul>
     <input type="file" id="filepicker">
-    <div>
-        <h3>Song List</h3>
-        <textarea name="songlist" id="songlist" cols="100" rows="10"></textarea>
+    <span>Open data/info/0 or 1/class_course_data.bin here</span>
+    <div id="songfinderresultcontainer">
+        <h3>Song Finder</h3>
+        <input type="text" id="songnameinp" placeholder="Search here...">
+        <table id="songfinderresult">
+            <thead>
+                <tr>
+                    <td>Song ID</td>
+                    <td>Genre</td>
+                    <td>Song Name</td>
+                    <td>Song ASCII Name</td>
+                    <td>Artist</td>
+                </tr>
+            </thead>
+        </table>
     </div>
     <div id="danedetails"></div>
 </body>

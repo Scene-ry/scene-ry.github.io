@@ -2,16 +2,54 @@ let modifiedBuffer = null;
 
 // const html = $('html');
 // const filePickerContainer = $('filepickercontainer');
-let songListComponent;
+let songnameinpComponent;
+let songfinderresultComponent;
 let filePickerComponent;
 let daneDetailsComponent;
+let textEncoder = new TextEncoder();
 
 window.onload = function () {
-  songListComponent = $('#songlist');
+  songnameinpComponent = $('#songnameinp');
+  songfinderresultComponent = $('#songfinderresult');
   filePickerComponent = $('#filepicker');
   daneDetailsComponent = $('#danedetails');
 
-  songListComponent.val(JSON.stringify(SONG_LIST, null, 4));
+  songfinderresultComponent.hide();
+  songnameinpComponent.on('blur', function (e) {
+    const kw = e.target.value;
+    let resultList;
+    if (/^:[0-9]+$/g.test(kw)) {
+      resultList = SONG_LIST.filter(function(song) {
+        return song.id.toString().substring(0, song.id.toString().length - 3) === kw.substring(1);
+      });
+    } else if (textEncoder.encode(kw).byteLength >= 2) {
+      resultList = SONG_LIST.filter(function(song) {
+        return song.id.toString() === kw
+          || song.title.toLowerCase().indexOf(kw.toLowerCase()) > -1
+          || song.title_ascii.toLowerCase().indexOf(kw.toLowerCase()) > -1
+          || song.genre.toLowerCase().indexOf(kw.toLowerCase()) > -1
+          || song.artist.toLowerCase().indexOf(kw.toLowerCase()) > -1;
+      });
+    }
+    if (resultList && resultList.length > 0) {
+      const tbody = $('<tbody>');
+      for (const res of resultList) {
+        const tr = $('<tr>')
+          .append($('<td>').append(res.id))
+          .append($('<td>').append(res.genre))
+          .append($('<td>').append(res.title))
+          .append($('<td>').append(res.title_ascii))
+          .append($('<td>').append(res.artist));
+        tbody.append(tr);
+      }
+      $('#songfinderresult tbody').remove();
+      songfinderresultComponent.append(tbody);
+      songfinderresultComponent.show();
+      return;
+    }
+    songfinderresultComponent.hide();
+  });
+
   filePickerComponent.on('change', function () {
     if (this.files && this.files.length > 0) {
       loadFile(this.files[0]);
