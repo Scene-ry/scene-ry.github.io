@@ -55,31 +55,58 @@ const HEAD_VERSION_POS = 4;
 const HEAD_TOTAL_ENTRY_POS = 8;
 const HEAD_ALLOCATED_ENTRY_POS = 0xa;
 
-const SINGLE_SONG_LENGTH = 0x52c;
+let SINGLE_SONG_LENGTH;
+let TITLE_MAX_LENGTH;
+let TITLE_POS;
+let ASCII_TITLE_POS;
+let GENRE_POS;
+let ARTIST_POS;
+let ENTRY_TEXTURE_FLAGS_TITLE_POS;
+let ENTRY_TEXTURE_FLAGS_ARTIST_POS;
+let ENTRY_TEXTURE_FLAGS_GENRE_POS;
+let ENTRY_TEXTURE_FLAGS_LOAD_POS;
+let ENTRY_TEXTURE_FLAGS_LIST_POS;
+let ENTRY_FONT_POS;
+let VERSION_POS;
+let OTHER_FOLDER_POS;
+let BEMANI_FOLDER_POS;
+let SPLITTABLE_DIFF_POS;
+let DIFFICULTIES_POS;
+let ENTRY_ID_POS;
+let VOLUME_POS;
+let FILE_IDENTIFIER_POS;
+let BGA_DELAY_POS;
+let BGA_FILENAME_POS;
+let BGA_FILENAME_MAX_LENGTH;
+let AFP_FLAG_POS;
 
-const TITLE_MAX_LENGTH = 64;
-const TITLE_POS = 0;
-const ASCII_TITLE_POS = 0x40;
-const GENRE_POS = 0x80;
-const ARTIST_POS = 0xc0;
-const ENTRY_TEXTURE_FLAGS_TITLE_POS = 0x100;
-const ENTRY_TEXTURE_FLAGS_ARTIST_POS = 0x104;
-const ENTRY_TEXTURE_FLAGS_GENRE_POS = 0x108;
-const ENTRY_TEXTURE_FLAGS_LOAD_POS = 0x10c;
-const ENTRY_TEXTURE_FLAGS_LIST_POS = 0x110;
-const ENTRY_FONT_POS = 0x114;
-const VERSION_POS = 0x118;
-const OTHER_FOLDER_POS = 0x11a;
-const BEMANI_FOLDER_POS = 0x11c;
-const SPLITTABLE_DIFF_POS = 0x11e;
-const DIFFICULTIES_POS = 0x120;
-const ENTRY_ID_POS = 0x3b0;
-const VOLUME_POS = 0x3b4;
-const FILE_IDENTIFIER_POS = 0x3b8;
-const BGA_DELAY_POS = 0x3c2;
-const BGA_FILENAME_POS = 0x3c4;
-const BGA_FILENAME_MAX_LENGTH = 0x13;
-const AFP_FLAG_POS = 0x3e4;
+function updatePosAndLen(version) {
+  const posAndLen = getRelativePosAndLen(version);
+  SINGLE_SONG_LENGTH = posAndLen.SINGLE_SONG_LENGTH;
+  TITLE_MAX_LENGTH = posAndLen.TITLE_MAX_LENGTH;
+  TITLE_POS = posAndLen.TITLE_POS;
+  ASCII_TITLE_POS = posAndLen.ASCII_TITLE_POS;
+  GENRE_POS = posAndLen.GENRE_POS;
+  ARTIST_POS = posAndLen.ARTIST_POS;
+  ENTRY_TEXTURE_FLAGS_TITLE_POS = posAndLen.ENTRY_TEXTURE_FLAGS_TITLE_POS;
+  ENTRY_TEXTURE_FLAGS_ARTIST_POS = posAndLen.ENTRY_TEXTURE_FLAGS_ARTIST_POS;
+  ENTRY_TEXTURE_FLAGS_GENRE_POS = posAndLen.ENTRY_TEXTURE_FLAGS_GENRE_POS;
+  ENTRY_TEXTURE_FLAGS_LOAD_POS = posAndLen.ENTRY_TEXTURE_FLAGS_LOAD_POS;
+  ENTRY_TEXTURE_FLAGS_LIST_POS = posAndLen.ENTRY_TEXTURE_FLAGS_LIST_POS;
+  ENTRY_FONT_POS = posAndLen.ENTRY_FONT_POS;
+  VERSION_POS = posAndLen.VERSION_POS;
+  OTHER_FOLDER_POS = posAndLen.OTHER_FOLDER_POS;
+  BEMANI_FOLDER_POS = posAndLen.BEMANI_FOLDER_POS;
+  SPLITTABLE_DIFF_POS = posAndLen.SPLITTABLE_DIFF_POS;
+  DIFFICULTIES_POS = posAndLen.DIFFICULTIES_POS;
+  ENTRY_ID_POS = posAndLen.ENTRY_ID_POS;
+  VOLUME_POS = posAndLen.VOLUME_POS;
+  FILE_IDENTIFIER_POS = posAndLen.FILE_IDENTIFIER_POS;
+  BGA_DELAY_POS = posAndLen.BGA_DELAY_POS;
+  BGA_FILENAME_POS = posAndLen.BGA_FILENAME_POS;
+  BGA_FILENAME_MAX_LENGTH = posAndLen.BGA_FILENAME_MAX_LENGTH;
+  AFP_FLAG_POS = posAndLen.AFP_FLAG_POS;
+}
 
 window.onload = function () {
   filePickerComponent = $('#filepicker');
@@ -243,8 +270,6 @@ function loadBuffer(loadedFile) {
   const buffer = new Uint8Array(loadedFile);
   if (checkPatchBytes(buffer)) {
     loadOnUI(buffer);
-    saveBtn.show();
-    panelComponent.show();
   } else {
     alert('Not valid music_data.bin file!');
   }
@@ -311,6 +336,12 @@ function convertBufferToNumber(...bufferItems) {
 
 function loadOnUI(buffer) {
   gameVersion = buffer[HEAD_VERSION_POS];
+  try {
+    updatePosAndLen(gameVersion);
+  } catch (error) {
+    alert(error);
+    return;
+  }
   // const totalEntryCount = convertBufferToNumber(buffer[HEAD_TOTAL_ENTRY_POS + 1], buffer[HEAD_TOTAL_ENTRY_POS]);
   allocatedEntryCount = convertBufferToNumber(buffer[HEAD_ALLOCATED_ENTRY_POS + 1], buffer[HEAD_ALLOCATED_ENTRY_POS]);
   const startOffset = HEAD_LENGTH + allocatedEntryCount * 2;
@@ -339,40 +370,10 @@ function loadOnUI(buffer) {
     const otherFolder = buffer[cursor + OTHER_FOLDER_POS];
     const bemaniFolder = buffer[cursor + BEMANI_FOLDER_POS];
     const splittableDiff = buffer[cursor + SPLITTABLE_DIFF_POS];
-    const difficulties = {
-      sp: {
-        beginner: buffer[cursor + DIFFICULTIES_POS],
-        normal: buffer[cursor + DIFFICULTIES_POS + 1],
-        hyper: buffer[cursor + DIFFICULTIES_POS + 2],
-        another: buffer[cursor + DIFFICULTIES_POS + 3],
-        legendaria: buffer[cursor + DIFFICULTIES_POS + 4],
-      },
-      dp: {
-        beginner: buffer[cursor + DIFFICULTIES_POS + 5],
-        normal: buffer[cursor + DIFFICULTIES_POS + 6],
-        hyper: buffer[cursor + DIFFICULTIES_POS + 7],
-        another: buffer[cursor + DIFFICULTIES_POS + 8],
-        legendaria: buffer[cursor + DIFFICULTIES_POS + 9],
-      },
-    };
+    const difficulties = getDifficulties(gameVersion, buffer, cursor, DIFFICULTIES_POS);
     const entryId = convertBufferToNumber(buffer[cursor + ENTRY_ID_POS + 1], buffer[cursor + ENTRY_ID_POS]);
     const volume = convertBufferToNumber(buffer[cursor + VOLUME_POS + 1], buffer[cursor + VOLUME_POS]);
-    const fileIdentifiers = {
-      sp: {
-        beginner: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS]),
-        normal: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS + 1]),
-        hyper: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS + 2]),
-        another: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS + 3]),
-        legendaria: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS + 4])
-      },
-      dp: {
-        beginner: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS + 5]),
-        normal: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS + 6]),
-        hyper: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS + 7]),
-        another: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS + 8]),
-        legendaria: String.fromCharCode(buffer[cursor + FILE_IDENTIFIER_POS + 9])
-      },
-    }
+    const fileIdentifiers = getFileIdentifiers(gameVersion, buffer, cursor, FILE_IDENTIFIER_POS);
     const bgaDelayRaw = convertBufferToNumber(buffer[cursor + BGA_DELAY_POS + 1], buffer[cursor + BGA_DELAY_POS]);
     const bgaDelay = bgaDelayRaw < 0x8000 ? bgaDelayRaw : bgaDelayRaw - 0x10000;
     const bgaFileNameBuffer = buffer.slice(cursor + BGA_FILENAME_POS, cursor + BGA_FILENAME_POS + BGA_FILENAME_MAX_LENGTH);
@@ -407,6 +408,8 @@ function loadOnUI(buffer) {
     };
   }
   loadSongListOnUI();
+  saveBtn.show();
+  panelComponent.show();
 }
 
 function loadSongListOnUI() {
